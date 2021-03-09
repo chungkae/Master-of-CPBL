@@ -1,0 +1,14 @@
+flask
+requests
+bs4
+numpy
+Pandas
+re
+csv
+datetime
+tempflie
+time
+random
+joblib
+scikit-learn==0.22.2
+gunicorn

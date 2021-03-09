@@ -1,0 +1,135 @@
+{% extends "base.html" %}
+
+{% block title %}投球分析{% endblock %}
+
+{% block main %}
+<h1 class="m-4 text-dark font-weight-bold">Graph</h1>
+
+<div id="ERA"></div>
+<div id="K_BB"></div>
+<div id="NP_IP"></div>
+<div id="H_IP__S_NP"></div>
+
+{% endblock %}
+
+
+{% block script %}
+
+<script>
+// 將 Python 資料轉換為 JavaScript 可以操作的資料
+const df_pit = {{ df_pit|tojson }};
+
+var ts = []
+ts = ['ti']
+df_pit['NM'].forEach(function(x,index) {
+    if (x=='蔡齊哲') {
+      ts.push(df_pit['DT'][index])
+      }
+      })
+
+var all = []
+var qqq = []
+qqq = ['防禦率']
+df_pit['NM'].forEach(function(x,index) {
+    if (x=='蔡齊哲') {
+      qqq.push(df_pit['ERA'][index])
+      }
+      })
+all.push(qqq)
+
+all.push(ts)
+var chart1 = c3.generate({
+    bindto: '#ERA',
+    data: {x: 'ti',
+           columns: all,
+           type: 'line'},
+    axis: { x : { type: 'timeseries', tick:                   {format: '%Y-%m-%d'} }
+          },
+    tooltip:{format:{value: d3.format('.2f')}}
+});
+
+
+var all = []
+var qqq = []
+qqq = ['K9']
+df_pit['NM'].forEach(function(x,index) {
+    if (x=='蔡齊哲') {
+      qqq.push(df_pit['K9'][index])
+      }
+      })
+all.push(qqq)
+
+qqq = ['BB9']
+df_pit['NM'].forEach(function(x,index) {
+    if (x=='蔡齊哲') {
+      qqq.push(df_pit['BB9'][index])
+      }
+      })
+all.push(qqq)
+
+all.push(ts)
+var chart2 = c3.generate({
+    bindto: '#K_BB',
+    data: {x: 'ti',
+           columns: all,
+           type: 'line'},
+    axis: { x : { type: 'timeseries', tick:                   {format: '%Y-%m-%d'} }
+          },
+    tooltip:{format:{value: d3.format('.1f')}}
+});
+
+var all = []
+var qqq = []
+qqq = ['平均每局用球數']
+df_pit['NM'].forEach(function(x,index) {
+    if (x=='蔡齊哲') {
+      qqq.push(df_pit['NP_IP'][index])
+      }
+      })
+all.push(qqq)
+
+all.push(ts)
+var chart3 = c3.generate({
+    bindto: '#NP_IP',
+    data: {x: 'ti',
+           columns: all,
+           type: 'line'},
+    axis: { x : { type: 'timeseries', tick:                   {format: '%Y-%m-%d'} }
+          },
+    tooltip:{format:{value: d3.format('.1f')}}
+});
+
+var all = []
+var qqq = []
+qqq = ['被安打/每局']
+df_pit['NM'].forEach(function(x,index) {
+    if (x=='蔡齊哲') {
+      qqq.push(df_pit['H_IP'][index])
+      }
+      })
+all.push(qqq)
+
+qqq = ['好球率']
+df_pit['NM'].forEach(function(x,index) {
+    if (x=='蔡齊哲') {
+      qqq.push(df_pit['S_NP'][index])
+      }
+      })
+all.push(qqq)
+
+all.push(ts)
+var chart4 = c3.generate({
+    bindto: '#H_IP__S_NP',
+    data: {x: 'ti',
+           columns: all,
+           type: 'line',
+           axes: {好球率 :'y2'}},
+    axis: { x : { type: 'timeseries', tick:                   {format: '%Y-%m-%d'} },
+y2:{show: true}
+          },
+    tooltip:{format:{value: d3.format('.1f')}}
+});
+
+
+</script>
+{% endblock %}

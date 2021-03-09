@@ -1,0 +1,46 @@
+{% extends "base.html" %}
+
+{% block title %}預測場次 - Select{% endblock %}
+
+{% block main %}
+<h2 class="m-4 text-dark font-weight-bold border-bottom">可供預測之近期賽事</h1>
+<div class="m-4 w-50">
+  {{df_5g | safe}}
+</div>
+<h2 class="m-4 text-dark font-weight-bold border-bottom">選擇預測之場次</h1>
+  <!-- 宣告一個巨集 -->
+  {% macro easy_option_form(col_name, col_options) -%}
+    <div class="form-group row">
+      <label for="{{ col_name }}" class="col-2 offset-1 col-form-label">{{ col_name }}:</label>
+      <div class="col-3">
+        <select class="form-control" id="{{ col_name }}" name="{{ col_name }}">
+          <option selected value=''>所有資料</option>
+          {% for col_option in col_options %}
+          <option value="'{{ col_option }}'">{{ col_option }}</option>
+          {% endfor %}
+        </select>
+      </div>
+    </div>
+  {%- endmacro %}
+
+  <div class="container">
+  <div class="row">
+  <div class="col">
+
+  
+    <h3><i class="far fa-hand-point-right"></i> Select 比賽場次</h3>
+  
+
+    <form method="post" action="/predict">
+
+      {{ easy_option_form("場次", uniques) }}
+
+
+      <button type="submit" class="col-1 offset-5 btn btn-success">Predict</button>
+  
+    </form>
+
+  </div>
+  </div>
+  </div>
+{% endblock %}
