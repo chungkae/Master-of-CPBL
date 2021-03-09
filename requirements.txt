@@ -3,7 +3,6 @@ requests
 bs4
 numpy
 Pandas
-re
 csv
 datetime
 tempflie
