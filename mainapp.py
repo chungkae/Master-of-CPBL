@@ -18,7 +18,7 @@ import joblib
 import time
 import random
 
-# 路徑要再調整
+
 app=Flask(__name__,template_folder='templates', static_folder='static')
 
 

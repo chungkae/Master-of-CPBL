@@ -3,9 +3,15 @@
 {% block title %}預測結果{% endblock %}
 
 {% block main %}
-<h1 class="m-4 text-dark font-weight-bold">預測一波</h1>
-<h2>日期: {{dd}}</h2>
-<h2>客:{{a}} vs 主:{{h}}</h2>
+
+<div class="jumbotron" style="margin: 10em auto">
+    <h1><i class="fas fa-piggy-bank"></i>
+中華職棒 MＬ Model -- 客隊:{{a}} vs 主隊:{{h}}</h1>
+    <p>重申純屬娛樂性質！ 其中勝負分之波動較大，精準度會稍低唷！
+    </p>
+  </div>
+
+<h2>比賽日期: {{dd}}</h2>
 <h2>主隊預測勝率: {{p1}}</h2>
 <h2>主隊預測正負分: {{p2}}</h2>
 {% endblock %}
