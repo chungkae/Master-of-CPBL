@@ -24,17 +24,8 @@ app=Flask(__name__,template_folder='templates', static_folder='static')
 
 
 
-# -----------  匯入必要資料  -------------
-game_all = pd.read_csv('game_full.csv')
-game_all['DATE'] = pd.to_datetime(game_all['DATE'])
-pitcher = pd.read_csv('pitcher_full.csv')
-hitter = pd.read_csv('hitter_full.csv')
-df_temp = game_all.loc[(game_all['DATE'] < datetime.datetime.combine(datetime.date.today(), datetime.datetime.min.time())) & (game_all['SCORE_A'].isnull())]
 
-# 這邊缺要處理已完成的場次
 
-hitter['DATE'] = pd.to_datetime(hitter['DATE'])
-pitcher['DATE'] = pd.to_datetime(pitcher['DATE'])
 
 # -----------  預測場次的資料+ML  -------------
 
@@ -268,6 +259,18 @@ def each_game(no_each,dt_each):
 
     return y_pred[0] ,y_p_pred[0]
 
+
+# -----------  匯入必要資料  -------------
+game_all = pd.read_csv('game_full.csv')
+game_all['DATE'] = pd.to_datetime(game_all['DATE'])
+pitcher = pd.read_csv('pitcher_full.csv')
+hitter = pd.read_csv('hitter_full.csv')
+df_temp = game_all.loc[(game_all['DATE'] < datetime.datetime.combine(datetime.date.today(), datetime.datetime.min.time())) & (game_all['SCORE_A'].isnull())]
+
+# 這邊缺要處理已完成的場次
+
+hitter['DATE'] = pd.to_datetime(hitter['DATE'])
+pitcher['DATE'] = pd.to_datetime(pitcher['DATE'])
 
 # ---------- route設定 ----------------
 
