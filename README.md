@@ -1,6 +1,6 @@
 # Master-of-CPBL
 
-[連結至網站](https://webcpbl.herokuapp.com)
+[連結至網站](https://webcpbl.herokuapp.com"連結至Heroku")
 
 ## 此為運用 flask 為框架所開發的 web. 請點選網站連結!
 ### 此 Web 部署於 Heroku 上.
@@ -13,6 +13,7 @@
 >>
 >>簡述過程將利用crawler爬取欲預測比賽之先發陣容與對戰成績，並搭配球員之近況納入考量。
 >>
+
 
 - [x] 提供主場球隊獲勝機率的預測結果
 
