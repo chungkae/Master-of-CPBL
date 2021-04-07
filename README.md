@@ -1,6 +1,6 @@
 # Master-of-CPBL
 
-[連結至網站](https://webcpbl.herokuapp.com"連結至Heroku")
+[連結至網站](https://webcpbl.herokuapp.com)
 
 ### 此為運用 flask 為框架所開發的 web, 請點選網站連結!
 ### Web 部署於 Heroku 上, 因有休眠機制, 初次使用需稍待喚醒.
